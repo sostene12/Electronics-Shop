@@ -1,6 +1,7 @@
 import User from "../model/User";
 import CryptoJS from 'crypto-js';
 import {sign} from "../helpers/jwt";
+import jwt from "jsonwebtoken";
 
 class AuthController{
     static async signup(req,res){
@@ -13,7 +14,7 @@ class AuthController{
                 age:req.body.age,
                 gender:req.body.gender
             });
-            const user = await User.save();
+            const user = await newUser.save();
             res.status(201).json(user);
         } catch (error) {
             res.status(401).json({error:error.message})
@@ -31,7 +32,7 @@ class AuthController{
         if(originalPassword !== req.body.password){
             res.status(401).json({error:"Wrong Credentials"});
         }
-        const accessToken = sign({id:user._id,role:user.role});
+        const accessToken = jwt.sign({id:user._id,role:"client"},process.env.JWT_SCRETE_KEY,{expiresIn:"24h"});
 
         const {password,...others} = user._doc;
         res.status(200).json({...others,accessToken});
