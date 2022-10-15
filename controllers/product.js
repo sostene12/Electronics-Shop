@@ -30,6 +30,15 @@ class ProductController{
             res.status(401).json({error:error.message});
         }))
     }
+    static async deleteProduct(req,res){
+        Product.findByIdAndDelete(req.params.id)
+        .then((result)=>{
+            res.json();
+        })
+        .catch(error=>{
+            res.status(401).json({error:error.message});
+        })
+    }
 }
 
 export default ProductController;
