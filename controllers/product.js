@@ -5,6 +5,7 @@ class ProductController{
     static async createProduct (req,res){
         const image = await cloudinary.uploader.upload(req.file.path)
         try {
+
            const newProduct = await new Product({
                 title:req.body.title,
                 description:req.body.description,
@@ -19,6 +20,15 @@ class ProductController{
         } catch (error) {
            res.status(401).json({error:error.message}); 
         }
+    }
+    static async getProduct(req,res){
+        Product.find().sort({createdAt:-1})
+        .then((result)=>{
+            res.json(result);
+        })
+        .catch((error=>{
+            res.status(401).json({error:error.message});
+        }))
     }
 }
 
