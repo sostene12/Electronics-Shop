@@ -37,6 +37,14 @@ class ProductController{
             res.status(401).json({error:error.message});
         }
     }
+    static async updateProduct(req,res){
+        try{
+
+        }
+        catch (error) {
+            res.status(401).json({error:error.message}); 
+         }
+    }
 }
 
 export default ProductController;
