@@ -6,7 +6,7 @@ import { verifyTokenAndClient } from "../middlewares/verify";
 const route = express.Router();
 
 route.post("/create",verifyTokenAndClient,upload.single('image'),ProductController.createProduct);
-route.get("/",ProductController.getProduct);
+route.get("/",ProductController.getAllProducts);
 route.delete('/delete/:id',ProductController.deleteProduct);
 
 export default route;

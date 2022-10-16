@@ -21,23 +21,21 @@ class ProductController{
            res.status(401).json({error:error.message}); 
         }
     }
-    static async getProduct(req,res){
-        Product.find().sort({createdAt:-1})
-        .then((result)=>{
-            res.json(result);
-        })
-        .catch((error=>{
-            res.status(401).json({error:error.message});
-        }))
+    static async getAllProducts(req,res){
+        try {
+            const products = await Product.find().sort({createdAt:-1});
+            res.status(200).json(products);
+        } catch (error) {
+            res.status(404).json({error:error.message})
+        }
     }
     static async deleteProduct(req,res){
-        Product.findByIdAndDelete(req.params.id)
-        .then((result)=>{
-            res.json();
-        })
-        .catch(error=>{
+        try {
+            await Product.findByIdAndDelete({_id:req.params.id});
+            res.status(200).json("Product deleted");
+        } catch (error) {
             res.status(401).json({error:error.message});
-        })
+        }
     }
 }
 
