@@ -48,9 +48,8 @@ class ProductController{
         }
         try {
             updates.forEach((update) => product[update] = req.body[update])
-            
             await product.save()
-            res.json(product)
+            res.status(200).json("Product Updated");
         } catch (error) {
             res.status(401).json({error:error.message}); 
         }
