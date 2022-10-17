@@ -25,6 +25,10 @@ const userSchema=new mongoose.Schema({
     },
     gender:{
         type:String,
+    },
+    role:{
+        type:Array,
+        default:'client'
     }
 },{timestamps: true});
 

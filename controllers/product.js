@@ -38,20 +38,11 @@ class ProductController{
         }
     }
     static async updateProduct(req,res){
-        const product = await Product.findById(req.params.id)
-        console.log(product)
-        const updates = Object.keys(req.body)
-        const allowedUpdates = ['title', 'description', 'image','price','color','size','categories','inStock'];
-        const isValidOperation = updates.every((update) => allowedUpdates.includes(update))
-        if (!isValidOperation) {
-            return res.status(400).send({ error: 'Invalid Update!' })
-        }
         try {
-            updates.forEach((update) => product[update] = req.body[update])
-            await product.save()
-            res.status(200).json("Product Updated");
+        const updatedProducts = await Product.findByIdAndUpdate({_id:req.params.id},{$set:req.body},{new:true});
+        res.status(200).json(updatedProducts)
         } catch (error) {
-            res.status(401).json({error:error.message}); 
+            console.log(error)
         }
     }
 }
