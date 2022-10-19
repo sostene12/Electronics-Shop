@@ -23,7 +23,7 @@ class AuthController{
 
     static async login(req,res){
        try {
-        const user = await User.findOne({email:req.body.username});
+        const user = await User.findOne({email:req.body.email});
         if(!user){
             res.status(404).json({error:"Wrong Credentials"});
         }
