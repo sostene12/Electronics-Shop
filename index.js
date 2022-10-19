@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import connectDb from "./database/dbconnect";
 import authRoute from "./routes/Auth";
 import productRoute from "./routes/product";
+import supplierRoute from "./routes/supplier";
 
 dotenv.config();
 
@@ -18,3 +19,4 @@ app.listen(process.env.PORT || 3000,() => {
 
 app.use("/api/auth",authRoute);
 app.use("/api/products",productRoute);
+app.use("/api/supplier",supplierRoute);
