@@ -8,7 +8,11 @@ const productSchema = new mongoose.Schema({
     color:{type:Array},
     size:{type:Array},
     categories:{type:Array},
-    inStock:{type:Boolean,default:true}
+    inStock:{type:Boolean,default:true},
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    }
 });
 
 const Product = mongoose.model('Product',productSchema);

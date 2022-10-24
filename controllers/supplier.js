@@ -65,5 +65,16 @@ class SupplierController{
             res.status(404).json({error:error.message});  
         }
     }
+
+    static async getByUserId (req,res){
+        try {
+            const userId = req.user.id
+            
+            const products = await Product.find({userId})
+            return res.status(200).json({message:"user supplier products",products})
+        } catch (error) {
+            res.status(404).json({error:error.message})
+        }
+    }
 }
 export default SupplierController;

@@ -6,8 +6,9 @@ class ProductController{
     static async createProduct (req,res){
         const image = await cloudinary.uploader.upload(req.file.path)
         try {
-
+            const userId =req.user.id
            const newProduct = await new Product({
+                user:userId,
                 title:req.body.title,
                 description:req.body.description,
                 image: image.secure_url,

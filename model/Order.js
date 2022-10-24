@@ -1,9 +1,15 @@
 import mongoose from "mongoose";
 
 const orderSchema = new mongoose.Schema({
-    name:{type:String,required:true},
+    products:[{
+        productid:{},
+        quantity:{String,required:true}
+    }],
     price:{type:Number,required:true},
-    image:{type:String,required:true},
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+    }
 });
 
 const Order = mongoose.model('Product',orderSchema);

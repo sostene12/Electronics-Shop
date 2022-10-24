@@ -1,7 +1,7 @@
 import jwt  from "jsonwebtoken";
 
 const verifyToken = (req,res,next) =>{
-    const authHeader = req.header('Authorization').replace('Bearer ','');
+    const authHeader = req.headers.token.split(" ")[1];
     if(authHeader){
         const token = authHeader;
         jwt.verify(token,process.env.JWT_SCRETE_KEY,(error,user) => {
@@ -9,6 +9,7 @@ const verifyToken = (req,res,next) =>{
                 res.status(403).json({error:"Invalid Token"});
             } else{
                 req.user=user;
+                // console.log(req.user.id);
                 next();
             }
         })
@@ -20,7 +21,7 @@ const verifyToken = (req,res,next) =>{
 
 const verifyTokenAndClient = (req,res,next) =>{
     verifyToken(req,res,()=>{
-        if(req.user.role === 'client'){
+        if(req.user.role.includes('client')){
             next();
         }
         else{
@@ -31,7 +32,8 @@ const verifyTokenAndClient = (req,res,next) =>{
 
 const verifyTokenAndSupplier = (req,res,next) =>{
     verifyToken(req,res,() =>{
-        if(req.role === 'supplier'){
+        console.log(req.user)
+        if(req.user.role.includes('supplier')){
             next();
         }else{
             res.status(401).json({error:"you can not trade"});
@@ -41,7 +43,7 @@ const verifyTokenAndSupplier = (req,res,next) =>{
 
 const verifyTokenAndAdmin = (req,res,next) =>{
     verifyToken(req,res,() =>{
-        if(req.user.role === 'admin'){
+        if(req.user.role.includes('admin')){
             next();
         }else{
             res.status(401).json({error:"you are not admin"});
