@@ -1,10 +1,10 @@
 import Joi from "joi";
 
 const Schema = Joi.object({
-    firstname:Joi.string()
+    firstName:Joi.string()
         .pattern(new RegExp('^[a-zA-Z]+ [a-zA-Z]+$'))
     ,
-    lastname:Joi.string()
+    lastName:Joi.string()
         .pattern(new RegExp('^[a-zA-Z]+ [a-zA-Z]+$'))
     ,
     username:Joi.string()
@@ -14,7 +14,11 @@ const Schema = Joi.object({
         .pattern(new RegExp('^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$')),
     email:Joi.string()
         .pattern(new RegExp('^[A-Z0-9+_.-]+@[A-Z0-9.-]+$'))
+        .lowercase()
     ,
+    phoneNumber:Joi.string()
+        .min(10)
+        .max(13)
 });
 
 export default Schema;
