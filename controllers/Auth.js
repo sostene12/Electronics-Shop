@@ -4,6 +4,8 @@ import {sign} from "../helpers/jwt";
 import jwt from "jsonwebtoken";
 import mailer from "../helpers/emails";
 import crypto from "crypto";
+import dotenv from "dotenv";
+dotenv.config();
 
 class AuthController{
     static async signup(req,res){
