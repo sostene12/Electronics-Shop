@@ -9,6 +9,6 @@ route.post("/create",verifyTokenAndSupplier,upload.single('image'),ProductContro
 route.get("/",ProductController.getAllProducts);
 route.delete('/delete/:id',ProductController.deleteProduct);
 route.put('/update/:id',ProductController.updateProduct);
-route.get('/singleProduct/:id',ProductController.getSingleProduct);
+route.get('/:id',ProductController.getSingleProduct);
 
 export default route;
