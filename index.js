@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import slash from "express-slash";
 import dotenv from "dotenv";
 import connectDb from "./database/dbconnect";
 import authRoute from "./routes/Auth";
@@ -11,6 +12,7 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cors())
+app.use(slash());
 
 connectDb();
 app.listen(process.env.PORT || 3000,() => {
