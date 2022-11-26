@@ -19,6 +19,6 @@ app.listen(process.env.PORT || 3000,() => {
     console.log(`Backend server is running on ${process.env.PORT}`)
 });
 
-app.use("/auth",authRoute);
-app.use("/products",productRoute);
-app.use("/supplier",supplierRoute);
+app.use("/api/auth",authRoute);
+app.use("/api/products",productRoute);
+app.use("/api/supplier",supplierRoute);
