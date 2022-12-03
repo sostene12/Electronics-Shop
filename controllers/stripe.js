@@ -25,7 +25,7 @@ class StripeController{
             if(!name) return res.status(400).json({message:"Please enter the name"});
 
             const paymentIntent = await stripe.paymentIntents.create({
-                amount:req.body,
+                amount:req.body * 100,
                 metadata:{name},
                 currency:"usd",
                 payment_method_types:['card']
