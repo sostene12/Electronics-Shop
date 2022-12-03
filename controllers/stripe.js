@@ -21,11 +21,11 @@ class StripeController{
 
     static async stripePay(req,res){
         try {
-            const {name} = req.body;
+            const {name,amount} = req.body;
             if(!name) return res.status(400).json({message:"Please enter the name"});
 
             const paymentIntent = await stripe.paymentIntents.create({
-                amount:req.body * 100,
+                amount:amount * 100,
                 metadata:{name},
                 currency:"usd",
                 payment_method_types:['card']
