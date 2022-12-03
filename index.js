@@ -6,6 +6,7 @@ import connectDb from "./database/dbconnect";
 import authRoute from "./routes/Auth";
 import productRoute from "./routes/product";
 import supplierRoute from "./routes/supplier";
+import stripeRoute from "./routes/stripe";
 
 dotenv.config();
 
@@ -22,3 +23,4 @@ app.listen(process.env.PORT || 3000,() => {
 app.use("/api/auth",authRoute);
 app.use("/api/products",productRoute);
 app.use("/api/supplier",supplierRoute);
+app.use("/api/checkout",stripeRoute);

@@ -1,4 +1,5 @@
 import User from "../model/User";
+import Supplier from "../model/Supplier";
 import CryptoJS from 'crypto-js';
 import {sign} from "../helpers/jwt";
 import jwt from "jsonwebtoken";
@@ -15,8 +16,8 @@ class AuthController{
                 lastName:req.body.lastName,
                 email:req.body.email,
                 password:CryptoJS.AES.encrypt(req.body.password,process.env.SECRET_KEY).toString(),
-                age:req.body.age,
-                gender:req.body.gender,
+                // age:req.body.age,
+                // gender:req.body.gender,
                 role:req.body.role,
                 emailToken:crypto.randomBytes(16).toString('hex')
             });
@@ -61,6 +62,24 @@ class AuthController{
             }
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    static async allUsers(req,res){
+        try {
+            const users = await User.find();
+            console.log(users);
+            res.status(200).json(users);
+        } catch (error) {
+            res.status(404).json({error:error.message});
+        }
+    }
+    static async approveSupplier(req,res){
+        const id = req.params.id;
+        try {
+            
+        } catch (error) {
+            
         }
     }
 }

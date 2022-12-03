@@ -4,6 +4,7 @@ const supplierSchema = new mongoose.Schema({
     firstNmae:{type:String,required:true},
     lastName:{type:String,required:true},
     email:{type:String,required:true,unique:true},
+    password:{type:String},
     phone:{type:Number,required:true}
 });
 

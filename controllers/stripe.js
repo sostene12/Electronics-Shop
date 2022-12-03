@@ -1,8 +1,9 @@
 import Stripe from "stripe";
+const stripe = new Stripe(process.env.STRIPE_KEY);
 
 class StripeController{
     static async payment(req,res){
-        Stripe.ChargesResource.create({
+        stripe.ChargesResource.create({
             source:req.body.tokenId,
             amount:req.body.amount,
             currency:'usd'

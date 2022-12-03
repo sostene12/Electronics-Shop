@@ -9,6 +9,7 @@ const route = express.Router()
 
 route.post("/signup",AuthController.signup);
 route.post("/login",verifyEmail,AuthController.login);
-route.get("/verifyemail/:token",AuthController.emailVerification)
+route.get("/verifyemail/:token",AuthController.emailVerification);
+route.get("/allusers",AuthController.allUsers);
 
 export default route;
