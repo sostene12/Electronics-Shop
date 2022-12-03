@@ -17,6 +17,25 @@ class StripeController{
             }
         }
         );
+    };
+
+    static async stripePay(req,res){
+        try {
+            const {name} = req.body;
+            if(!name) return res.status(400).json({message:"Please enter the name"});
+
+            const paymentIntent = await stripe.paymentIntents.create({
+                amount:req.body,
+                metadata:{name},
+                currency:"usd",
+                payment_method_types:['card']
+            });
+            const clientSecret = paymentIntent.client_secret;
+            res.status(200).json({message:"payment iNitiated",clientSecret});
+        } catch (error) {
+            console.log(error);
+            res.status(500).json({error:error.message})
+        }
     }
 }
 
