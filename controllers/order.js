@@ -5,7 +5,7 @@ class OrderController{
         try {
             const newOrder = new Order(req.body);
             const order = await newOrder.save();
-            res.json({message:'order created successfully'},order)
+            res.status(201).json({message:'order created successfully',order})
         } catch (error) {
            res.status(400).json({error:error.message}) 
         }
