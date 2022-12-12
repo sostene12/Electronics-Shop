@@ -40,7 +40,7 @@ const mailer = async (info, action) =>{
                  composition = `<p>
                  your account created successfully!
                  to verify your account 
-                 <a href='http://localhost:5000/api/auth/verifyemail/${info.emailToken}'>click here</a>
+                 <a href='https://electronic-shop.onrender.com/api/auth/verifyemail/${info.emailToken}'>click here</a>
              </p>`;
              break;
 
