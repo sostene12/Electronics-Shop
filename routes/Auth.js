@@ -8,7 +8,7 @@ import verifyEmail from "../middlewares/verifyEmail"
 const route = express.Router()
 
 route.post("/signup",AuthController.signup);
-route.post("/login",verifyEmail,AuthController.login);
+route.post("/login",AuthController.login);
 route.get("/verifyemail/:token",AuthController.emailVerification);
 route.get("/allusers",AuthController.allUsers);
 
