@@ -22,7 +22,6 @@ const mailer = async (info, action) =>{
     let subject;
     let emailto;
     let composition;
-    console.log(info);
 
     switch(action){
 
@@ -73,13 +72,10 @@ const mailer = async (info, action) =>{
     try{
         const sendEmail = transporter.sendMail(mailOptions, (err,info)=>{
             
-            console.log(err)
-            console.log(info)
             return sendEmail
         });
         
     }catch(error){
-        console.log(error)
         return error
     }
 

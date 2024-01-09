@@ -25,6 +25,11 @@ class AuthController {
         emailToken: crypto.randomBytes(16).toString("hex"),
       });
 
+      const existingUser = await User.findOne({ email: newUser.email });
+      if (existingUser) {
+        return res.status(401).json({ error: "User already exist" });
+      }
+
       const user = await newUser.save();
       await mailer(
         { email: newUser.email, emailToken: newUser.emailToken },
