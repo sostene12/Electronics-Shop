@@ -1,6 +1,5 @@
-import ProductController from "../src/controllers/Product";
 import Product from "../src/model/Product";
-
+import ProductController from "../src/controllers/product";
 jest.mock("../src/helpers/cloudinary", () => ({
   uploader: {
     upload: jest.fn(),
