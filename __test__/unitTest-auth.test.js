@@ -1,12 +1,12 @@
 import AuthController from "../src/controllers/Auth";
 import User from "../src/model/User";
-import nodemailer from 'nodemailer-mock';
+import nodemailer from "nodemailer-mock";
 
 jest.mock("../src/model/User");
-jest.mock('nodemailer');
+jest.mock("nodemailer");
 
 // Setup the mock implementation for nodemailer
-jest.spyOn(nodemailer, 'createTransport').mockImplementation(() => nodemailer);
+jest.spyOn(nodemailer, "createTransport").mockImplementation(() => nodemailer);
 
 describe("AuthController", () => {
   describe("create user account/ signup", () => {
@@ -31,12 +31,12 @@ describe("AuthController", () => {
 
       // Mocking newUser.save to return the created user
       User.prototype.save.mockResolvedValue({
-        _id: 'mockedUserId',
-        firstName: 'sostene',
-        lastName: 'Munezero',
-        email: 'munezero@gmail.com',
+        _id: "mockedUserId",
+        firstName: "sostene",
+        lastName: "Munezero",
+        email: "munezero@gmail.com",
         password: "123456",
-        role: 'client',
+        role: "client",
       });
 
       // Calling the signup function
@@ -44,7 +44,9 @@ describe("AuthController", () => {
 
       // Expectations
       expect(res.status).toHaveBeenCalledWith(201);
-      expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ _id: 'mockedUserId' }));
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({ _id: "mockedUserId" })
+      );
     });
   });
 
