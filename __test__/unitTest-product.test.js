@@ -64,6 +64,9 @@ describe("ProductController", () => {
 
       expect(res.status).toHaveBeenCalledWith(201);
       expect(res.json).toHaveBeenCalledWith(await mockedProductInstance.save());
+      expect(res.json).toHaveBeenCalledWith(
+        expect.objectContaining({ _id: "mockedProductId" })
+      );
     });
   });
 
