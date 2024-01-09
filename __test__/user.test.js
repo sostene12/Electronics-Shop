@@ -51,7 +51,6 @@ describe("POST api/auth/login", () => {
   });
   test("should return authentication token on successful login", async () => {
     const res = await request.post("/api/auth/login").send(loginUser);
-    console.log(res.status, res.body);
     expect(res.statusCode).toBe(200);
     expect(res.body.accessToken).toBeDefined();
   });
