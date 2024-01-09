@@ -1,8 +1,6 @@
 import supertest from "supertest";
 import defaults from "superagent-defaults";
 
-import { disconnectDb, connectDb } from "../src/database/dbconnect";
-
 import app from "../src/app";
 
 const request = defaults(supertest(app));
@@ -10,10 +8,6 @@ const request = defaults(supertest(app));
 let productId;
 
 describe("test products endpoints", () => {
-  beforeAll(async () => {
-    await connectDb();
-  });
-
   test("It should return all products", async () => {
     const response = await request.get("/api/products/");
     expect(response.statusCode).toBe(200);
@@ -35,9 +29,5 @@ describe("test products endpoints", () => {
   test("Testing wrong product id", async () => {
     const response = await request.get(`/api/products/635d838a79f491ea130c15e`);
     expect(response.statusCode).toBe(404);
-  });
-
-  afterAll(async () => {
-    await disconnectDb();
   });
 });
