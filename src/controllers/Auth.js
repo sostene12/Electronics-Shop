@@ -27,7 +27,7 @@ class AuthController {
 
       const existingUser = await User.findOne({ email: newUser.email });
       if (existingUser) {
-        return res.status(401).json({ error: "User already exist" });
+        return res.status(409).json({ error: "User already exist" });
       }
 
       const user = await newUser.save();
@@ -37,7 +37,7 @@ class AuthController {
       );
       res.status(201).json(user);
     } catch (error) {
-      res.status(401).json({ error: error.message });
+      return res.status(401).json({ error: error.message });
     }
   }
 
